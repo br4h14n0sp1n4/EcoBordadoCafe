@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Empresa | EcoBordado Café</title>
+
+  <!-- Hojas de estilo -->
+  <link rel="stylesheet" href="Productos.css">
+  <link rel="stylesheet" href="empresa.css">
+  <link rel="stylesheet" href="MI CHATBOT/CHATBOT.CSS">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuentes -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    .empresa-portada {
+      padding: 34px;
+      margin-bottom: 32px;
+      text-align: center;
+      color: #ffffff;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(65, 111, 90, 0.9),
+          rgba(63, 35, 24, 0.88)
+        ),
+        url("Bordado Colombia.png") center / cover;
+
+      border: 4px solid #e7ae48;
+      border-radius: 22px;
+      box-shadow: 0 12px 25px rgba(79, 43, 29, 0.22);
+    }
+
+    .empresa-portada h1 {
+      color: #ffffff !important;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .empresa-portada h1::after {
+      background: #e7ae48;
+    }
+
+    .empresa-portada p {
+      max-width: 680px;
+      margin: 15px auto 0;
+      line-height: 1.7;
+    }
+
+    .bloque-empresa {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 28px;
+      align-items: center;
+      padding: 26px;
+      margin-bottom: 28px;
+
+      background: #fff5e6;
+      border: 1px solid #efd7b6;
+      border-radius: 20px;
+    }
+
+    .bloque-empresa img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+
+      border: 5px solid #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(79, 43, 29, 0.2);
+    }
+
+    .bloque-empresa h2 {
+      margin-bottom: 10px;
+      color: #70412d;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .bloque-empresa p {
+      color: #5f5148;
+      line-height: 1.75;
+    }
+
+    .bloque-empresa.vision {
+      background: #f1f7f2;
+    }
+
+    .bloque-empresa.vision img {
+      object-position: center bottom;
+    }
+
+    .valores-titulo {
+      margin: 34px 0 20px;
+      color: #3f2318;
+      text-align: center;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .valor {
+      padding: 22px;
+      text-align: center;
+      background: #ffffff;
+      border: 1px solid #efd7b6;
+      border-radius: 16px;
+      box-shadow: 0 5px 13px rgba(79, 43, 29, 0.1);
+    }
+
+    .valor span {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 2.4rem;
+    }
+
+    .valor h3 {
+      color: #70412d;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .valor p {
+      margin-top: 8px;
+      color: #6d5649;
+      line-height: 1.5;
+    }
+
+    /* TARJETAS DEL EQUIPO Y UBICACIÓN */
+
+    .equipo-lateral {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .persona {
+      position: absolute;
+      width: 310px;
+      height: 365px;
+      padding: 18px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          #f8e2bd 0,
+          transparent 34%
+        ),
+        linear-gradient(145deg, #fffaf1, #f7e6cc);
+
+      border: 3px solid #e7ae48;
+      border-radius: 25px;
+
+      box-shadow:
+        0 12px 28px rgba(79, 43, 29, 0.19),
+        inset 0 0 0 5px rgba(255, 255, 255, 0.65);
+
+      pointer-events: auto;
+      overflow: hidden;
+
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+    }
+
+    /* Adornos de las esquinas */
+
+    .persona::before {
+      content: "✿";
+      position: absolute;
+      top: 8px;
+      right: 15px;
+
+      color: #d69a3b;
+      font-size: 29px;
+      opacity: 0.85;
+
+      transition: transform 0.4s ease;
+    }
+
+    .persona::after {
+      content: "❧";
+      position: absolute;
+      bottom: 5px;
+      left: 13px;
+
+      color: #719078;
+      font-size: 32px;
+      opacity: 0.8;
+    }
+
+    .persona:hover {
+      transform: scale(1.045) translateY(-5px);
+      border-color: #bd792b;
+
+      box-shadow:
+        0 20px 42px rgba(79, 43, 29, 0.3),
+        0 0 0 5px rgba(231, 174, 72, 0.17);
+    }
+
+    .persona:hover::before {
+      transform: rotate(35deg) scale(1.15);
+    }
+
+    .persona .etiqueta {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 5px 15px;
+
+      color: #fff8eb;
+      background: #70412d;
+      border-radius: 30px;
+
+      font-family: "Poppins", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .persona .marco-foto {
+      width: 205px;
+      height: 195px;
+      padding: 5px;
+      margin-bottom: 13px;
+
+      background: linear-gradient(
+        135deg,
+        #e7ae48,
+        #fff0cc,
+        #a86d3d
+      );
+
+      border-radius: 19px;
+      box-shadow: 0 5px 14px rgba(79, 43, 29, 0.18);
+      overflow: hidden;
+    }
+
+    .persona img {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+
+      border: 3px solid #fffaf1;
+      border-radius: 15px;
+      box-shadow: none;
+
+      transition: transform 0.4s ease;
+    }
+
+    .persona:hover img {
+      transform: scale(1.06);
+    }
+
+    .persona h3 {
+      margin: 0;
+      color: #70412d;
+
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .persona .cargo {
+      margin-top: 5px;
+      color: #9b6a32;
+
+      font-family: "Poppins", sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    /* Descripción que aparece al pasar el cursor */
+
+    .persona .descripcion {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 32px;
+      color: #fff8eb;
+
+      background: linear-gradient(
+        145deg,
+        rgba(48, 83, 65, 0.97),
+        rgba(63, 35, 24, 0.98)
+      );
+
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+
+      transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease;
+
+      border-radius: 21px;
+    }
+
+    .persona .descripcion .adorno {
+      margin-bottom: 15px;
+      color: #e7ae48;
+      font-size: 2.3rem;
+    }
+
+    .persona .descripcion h4 {
+      margin-bottom: 12px;
+      color: #f6d18b;
+
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+    }
+
+    .persona .descripcion p {
+      color: #fff8eb;
+
+      font-family: "Poppins", sans-serif;
+      font-size: 0.91rem;
+      line-height: 1.8;
+    }
+
+    .persona .descripcion .detalle {
+      margin-top: 18px;
+      color: #f6d18b;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+    }
+
+    .persona:hover .descripcion,
+    .persona:focus-within .descripcion {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Posición de las tarjetas en escritorio */
+
+    .persona-gerente {
+      top: 3%;
+      left: 1.2%;
+    }
+
+    .persona-secretario {
+      top: 53%;
+      left: 1.2%;
+    }
+
+    .persona-proveedor {
+      top: 3%;
+      right: 1.2%;
+    }
+
+    .persona-ubicacion {
+      top: 53%;
+      right: 1.2%;
+    }
+
+    /* Pantallas medianas */
+
+    @media (max-width: 1500px) {
+      .persona {
+        width: 260px;
+        height: 325px;
+        padding: 15px;
+      }
+
+      .persona .marco-foto {
+        width: 175px;
+        height: 165px;
+      }
+
+      .persona h3 {
+        font-size: 1.35rem;
+      }
+
+      .persona .descripcion {
+        padding: 25px;
+      }
+
+      .persona .descripcion h4 {
+        font-size: 1.35rem;
+      }
+
+      .persona .descripcion p {
+        font-size: 0.83rem;
+      }
+    }
+
+    /* En pantallas pequeñas, las tarjetas pasan al flujo normal */
+
+    @media (max-width: 1100px) {
+      .equipo-lateral {
+        position: static;
+
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+
+        margin: 0 auto 30px;
+        max-width: 900px;
+
+        pointer-events: auto;
+      }
+
+      .persona {
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+
+        width: 100%;
+        max-width: 340px;
+        height: 350px;
+        margin: auto;
+      }
+
+      .persona-proveedor,
+      .persona-ubicacion {
+        grid-column: 1 / -1;
+      }
+
+      .persona .marco-foto {
+        width: 190px;
+        height: 180px;
+      }
+
+      .persona:hover {
+        transform: translateY(-4px);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .bloque-empresa {
+        grid-template-columns: 1fr;
+      }
+
+      .bloque-empresa img {
+        height: 230px;
+      }
+
+      .equipo-lateral {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .persona,
+      .persona-proveedor,
+      .persona-ubicacion {
+        grid-column: auto;
+        width: 100%;
+        max-width: 340px;
+      }
+    }
+
+    /* Compatibilidad con dispositivos táctiles */
+
+    @media (hover: none) {
+      .persona:active .descripcion,
+      .persona:focus-within .descripcion {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+  <!-- TARJETAS DEL EQUIPO Y UBICACIÓN -->
+
+  <section class="equipo-lateral">
+
+    <!-- GERENTE -->
+
+    <article class="persona persona-gerente" tabindex="0">
+
+      <span class="etiqueta">Nuestro equipo</span>
+
+      <div class="marco-foto">
+        <img
+          src="FotoB.png"
+          alt="Fotografía del gerente fundador"
+        >
+      </div>
+
+      <h3>Gerente</h3>
+      <p class="cargo">✦ Fundador ✦</p>
+
+      <div class="descripcion">
+        <span class="adorno">☕</span>
+
+        <h4>Gerente</h4>
+
+        <p>
+          Es el fundador de EcoBordado Café y lidera el proyecto,
+          guiando su crecimiento y cuidando su esencia cultural.
+        </p>
+
+        <span class="detalle">PASIÓN · LIDERAZGO · TRADICIÓN</span>
+      </div>
+
+    </article>
+
+    <!-- SECRETARIO -->
+
+    <article class="persona persona-secretario" tabindex="0">
+
+      <span class="etiqueta">Nuestro equipo</span>
+
+      <div class="marco-foto">
+        <img
+          src="FotoD.png"
+          alt="Fotografía del secretario ayudante"
+        >
+      </div>
+
+      <h3>Secretario</h3>
+      <p class="cargo">✦ Ayudante ✦</p>
+
+      <div class="descripcion">
+        <span class="adorno">🧵</span>
+
+        <h4>Secretario</h4>
+
+        <p>
+          Apoya la organización del negocio, colabora con las tareas
+          diarias y ayuda a que cada detalle funcione correctamente.
+        </p>
+
+        <span class="detalle">ORDEN · APOYO · COMPROMISO</span>
+      </div>
+
+    </article>
+
+    <!-- PROVEEDOR -->
+
+    <article class="persona persona-proveedor" tabindex="0">
+
+      <span class="etiqueta">Nuestro equipo</span>
+
+      <div class="marco-foto">
+        <img
+          src="FotoY.png"
+          alt="Fotografía del proveedor de entregas"
+        >
+      </div>
+
+      <h3>Vendedor - Local</h3>
+      <p class="cargo">✦ Entregas ✦</p>
+
+      <div class="descripcion">
+        <span class="adorno">🌿</span>
+
+        <h4>Presencial</h4>
+
+        <p>
+          Entrega los productos necesarios
+          para mantener la calidad y el buen servicio de la cafetería.
+        </p>
+
+        <span class="detalle">CALIDAD · CONFIANZA · SERVICIO</span>
+      </div>
+
+    </article>
+
+    <!-- UBICACIÓN DE LA EMPRESA -->
+
+    <article class="persona persona-ubicacion" tabindex="0">
+
+      <span class="etiqueta">Encuéntranos</span>
+
+      <div class="marco-foto">
+        <img
+          src="ubicacion-cartago.png"
+          alt="Imagen de la ubicación de EcoBordado Café en Cartago"
+        >
+      </div>
+
+      <h3>Ubicación</h3>
+      <p class="cargo">✦ Cartago, Valle del Cauca ✦</p>
+
+      <div class="descripcion">
+        <span class="adorno">📍</span>
+
+        <h4>Nuestra ubicación</h4>
+
+        <p>
+          Una ciudad reconocida por su tradición, cultura y arte artesanal.
+        </p>
+
+        <span class="detalle">CULTURA · CAFÉ · TRADICIÓN</span>
+      </div>
+
+    </article>
+
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL DE LA EMPRESA -->
+
+  <main class="max-w-5xl w-full bg-white shadow-xl rounded-xl p-8">
+
+    <!-- LOGO CENTRADO ENCIMA DEL MENÚ -->
+
+    <div class="logo-empresa flex justify-center mb-6">
+      <img
+        src="imagen.ecobordado.jpg"
+        alt="Logo de EcoBordado Café"
+        class="w-32 h-32 rounded-full shadow-lg"
+      >
+    </div>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+
+    <nav
+      class="navegacion-principal"
+      aria-label="Navegación principal"
+    >
+      <a
+        href="index.html"
+        class="boton-navegacion"
+      >
+        Inicio
+      </a>
+
+      <a
+        href="empresa.html"
+        class="boton-navegacion activo"
+        aria-current="page"
+      >
+        Empresa
+      </a>
+
+      <a
+        href="productos.html"
+        class="boton-navegacion"
+      >
+        Productos
+      </a>
+
+      <a
+        href="contacto.html"
+        class="boton-navegacion"
+      >
+        Contacto
+      </a>
+    </nav>
+
+    <!-- PORTADA -->
+
+    <section class="empresa-portada">
+
+      <h1>Más que una cafetería</h1>
+
+      <p>
+        Somos un espacio que celebra el café, honra el bordado y conecta
+        a las personas con la riqueza cultural de Cartago.
+      </p>
+
+    </section>
+
+    <!-- HISTORIA -->
+
+    <section class="bloque-empresa">
+
+      <img
+        src="Bordado Colombia.png"
+        alt="Artesanía y cultura colombiana"
+      >
+
+      <div>
+
+        <h2>Nuestra historia</h2>
+
+        <p>
+          EcoBordado Café nace de la idea de unir dos expresiones que nos
+          representan: el aroma del café colombiano y el arte paciente
+          del bordado artesanal.
+        </p>
+
+        <br>
+
+        <p>
+          Queremos que cada visita sea una oportunidad para disfrutar,
+          aprender, apoyar a artesanos locales y llevarse un recuerdo
+          con significado.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- MISIÓN -->
+
+    <section class="bloque-empresa">
+
+      <img
+        src="artesanos.jpg"
+        alt="Artesanos locales trabajando"
+      >
+
+      <div>
+
+        <h2>Nuestra misión</h2>
+
+        <p>
+          Crear experiencias culturales y gastronómicas de calidad que
+          fortalezcan el trabajo artesanal, promuevan el turismo sostenible
+          y aporten al desarrollo de nuestra comunidad.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- VISIÓN -->
+
+    <section class="bloque-empresa vision">
+
+      <img
+        src="cafeteria.jpg"
+        alt="Interior de una cafetería"
+      >
+
+      <div>
+
+        <h2>Nuestra visión</h2>
+
+        <p>
+          Para 2030 buscamos ser un referente de turismo cultural en el
+          Valle del Cauca, reconocido por la innovación, la sostenibilidad
+          y el apoyo al talento local.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- VALORES -->
+
+    <h2 class="valores-titulo">Nuestros valores</h2>
+
+    <section class="grid md:grid-cols-3 gap-5">
+
+      <article class="valor">
+
+        <span>🤝</span>
+
+        <h3>Comunidad</h3>
+
+        <p>
+          Creemos en el trabajo conjunto y en el valor de apoyar a lo local.
+        </p>
+
+      </article>
+
+      <article class="valor">
+
+        <span>🧵</span>
+
+        <h3>Creatividad</h3>
+
+        <p>
+          Transformamos las tradiciones artesanales en experiencias memorables.
+        </p>
+
+      </article>
+
+      <article class="valor">
+
+        <span>🌿</span>
+
+        <h3>Sostenibilidad</h3>
+
+        <p>
+          Promovemos decisiones responsables con las personas y el entorno.
+        </p>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- CHATBOT -->
+
+  <script src="MI CHATBOT/chatbot.js"></script>
+
+</body>
+</html>
